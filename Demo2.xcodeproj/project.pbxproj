@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83193E671EA27640009AC64C /* MapViewConttroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E661EA27640009AC64C /* MapViewConttroller.swift */; };
 		83DBDC4C1EA16F530024665C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4B1EA16F530024665C /* AppDelegate.swift */; };
 		83DBDC4E1EA16F530024665C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4D1EA16F530024665C /* MasterViewController.swift */; };
 		83DBDC501EA16F530024665C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4F1EA16F530024665C /* DetailViewController.swift */; };
@@ -15,6 +16,7 @@
 		83DBDC581EA16F530024665C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DBDC561EA16F530024665C /* LaunchScreen.storyboard */; };
 		83DBDC631EA16F530024665C /* Demo2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC621EA16F530024665C /* Demo2Tests.swift */; };
 		83DBDC6E1EA16F530024665C /* Demo2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC6D1EA16F530024665C /* Demo2UITests.swift */; };
+		83DBDC7C1EA1716B0024665C /* Organizations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DBDC7B1EA1716B0024665C /* Organizations.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83193E661EA27640009AC64C /* MapViewConttroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewConttroller.swift; sourceTree = "<group>"; };
 		83DBDC481EA16F530024665C /* Demo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DBDC4B1EA16F530024665C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83DBDC4D1EA16F530024665C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		83DBDC691EA16F530024665C /* Demo2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Demo2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DBDC6D1EA16F530024665C /* Demo2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo2UITests.swift; sourceTree = "<group>"; };
 		83DBDC6F1EA16F530024665C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83DBDC7B1EA1716B0024665C /* Organizations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Organizations.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +106,11 @@
 				83DBDC4B1EA16F530024665C /* AppDelegate.swift */,
 				83DBDC4D1EA16F530024665C /* MasterViewController.swift */,
 				83DBDC4F1EA16F530024665C /* DetailViewController.swift */,
+				83193E661EA27640009AC64C /* MapViewConttroller.swift */,
+				83DBDC561EA16F530024665C /* LaunchScreen.storyboard */,
+				83DBDC7B1EA1716B0024665C /* Organizations.plist */,
 				83DBDC511EA16F530024665C /* Main.storyboard */,
 				83DBDC541EA16F530024665C /* Assets.xcassets */,
-				83DBDC561EA16F530024665C /* LaunchScreen.storyboard */,
 				83DBDC591EA16F530024665C /* Info.plist */,
 			);
 			path = Demo2;
@@ -236,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DBDC581EA16F530024665C /* LaunchScreen.storyboard in Resources */,
+				83DBDC7C1EA1716B0024665C /* Organizations.plist in Resources */,
 				83DBDC551EA16F530024665C /* Assets.xcassets in Resources */,
 				83DBDC531EA16F530024665C /* Main.storyboard in Resources */,
 			);
@@ -264,6 +271,7 @@
 			files = (
 				83DBDC501EA16F530024665C /* DetailViewController.swift in Sources */,
 				83DBDC4E1EA16F530024665C /* MasterViewController.swift in Sources */,
+				83193E671EA27640009AC64C /* MapViewConttroller.swift in Sources */,
 				83DBDC4C1EA16F530024665C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +519,7 @@
 				83DBDC741EA16F530024665C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83DBDC751EA16F530024665C /* Build configuration list for PBXNativeTarget "Demo2Tests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +528,7 @@
 				83DBDC771EA16F530024665C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83DBDC781EA16F530024665C /* Build configuration list for PBXNativeTarget "Demo2UITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +537,7 @@
 				83DBDC7A1EA16F530024665C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

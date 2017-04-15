@@ -8,11 +8,22 @@
 
 import UIKit
 
+open class Organization: NSObject {
+
+    var name  = String()
+
+    var location  = String()
+    var url = String()
+    
+    var email = String()
+    var phone = String()
+    
+}
+
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
-
+    var objects = [Organization]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,19 +49,30 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
+        
+        let new_org = Organization()
+        
+        new_org.name = "Loveway"
+        new_org.email = "mailto:info@lovewayinc.org"
+        new_org.url = "http://lovewayinc.org"
+        new_org.location = "54151 CR 33, Middlebury, IN 46540"
+        new_org.phone = "tel://5748255666"
+        
+        objects.insert(new_org, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        
     }
-
+    
     // MARK: - Segues
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row] 
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
+                controller.title = object.name
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -67,19 +89,25 @@ class MasterViewController: UITableViewController {
         return objects.count
     }
 
+    // override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    
+        
+    // }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = objects[indexPath.row] 
+        cell.textLabel!.text = object.name
+        cell.detailTextLabel!.text = object.url
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             objects.remove(at: indexPath.row)
@@ -88,7 +116,6 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
 
 }
 
