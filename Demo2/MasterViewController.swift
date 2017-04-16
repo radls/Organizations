@@ -27,6 +27,9 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableHeaderView = tableHeader()
+
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
 
@@ -53,10 +56,10 @@ class MasterViewController: UITableViewController {
         let new_org = Organization()
         
         new_org.name = "Loveway"
-        new_org.email = "mailto:info@lovewayinc.org"
-        new_org.url = "http://lovewayinc.org"
+        new_org.email = "info@lovewayinc.org"
+        new_org.url = "lovewayinc.org"
         new_org.location = "54151 CR 33, Middlebury, IN 46540"
-        new_org.phone = "tel://5748255666"
+        new_org.phone = "5748255666"
         
         objects.insert(new_org, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
@@ -79,6 +82,46 @@ class MasterViewController: UITableViewController {
         }
     }
 
+    func tableHeader() -> UIView? {
+        
+        let view = UIView()
+        
+        view.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height:200)
+        
+        let webView = UIWebView()
+        
+        webView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height:200)
+        
+        webView.isUserInteractionEnabled = false
+        webView.backgroundColor = UIColor.white
+        
+        let embeddedHTML = "<html><head></head><body><center><div style='font-family:helvetica;font-weight:bold;font-size:40px;'>GET INVOLVED</div></center><center><div style='color:grey;font-family:helvetica;font-size:10px;line-height: 175%;'>Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. Sociis mauris in integer, a dolor netus non dui aliquet, sagittis felis sodales, dolor sociis mauris, vel eu libero cras. </div></center> </body></html>";
+        
+        webView.loadHTMLString(embeddedHTML, baseURL: nil)
+        
+        view.addSubview(webView)
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0.0, y: view.frame.size.height-44.0, width:self.view.frame.size.width, height: 44.0))
+        
+        let button1 = UIBarButtonItem(title: "A-Z", style: UIBarButtonItemStyle.done, target: self, action: nil)
+        let button2 = UIBarButtonItem(title: "Newest", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        let button3 = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        
+        button1.tintColor = UIColor.gray
+        button2.tintColor = UIColor.gray
+        button3.tintColor = UIColor.gray
+        
+        // https://www.hackingwithswift.com/example-code/uikit/how-to-add-a-flexible-space-to-a-uibarbuttonitem
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        toolbar.items = [spacer,button1,spacer,button2,spacer,button3,spacer]
+        
+        view.addSubview(toolbar)
+        
+        return view
+        
+    }
+
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,7 +141,7 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         let object = objects[indexPath.row] 
-        cell.textLabel!.text = object.name
+        cell.textLabel!.text = object.name.uppercased()
         cell.detailTextLabel!.text = object.url
         return cell
     }

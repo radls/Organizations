@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		83193E671EA27640009AC64C /* MapViewConttroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E661EA27640009AC64C /* MapViewConttroller.swift */; };
+		83193E6B1EA2DAEA009AC64C /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83193E6A1EA2DAEA009AC64C /* AppIcon.xcassets */; };
+		83193E6D1EA2DB13009AC64C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83193E6C1EA2DB13009AC64C /* Assets.xcassets */; };
+		83193E6F1EA3CBE0009AC64C /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E6E1EA3CBE0009AC64C /* ContactCell.swift */; };
+		83193E711EA3D1E4009AC64C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E701EA3D1E4009AC64C /* LocationCell.swift */; };
+		83193E731EA3D211009AC64C /* URLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E721EA3D211009AC64C /* URLCell.swift */; };
 		83DBDC4C1EA16F530024665C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4B1EA16F530024665C /* AppDelegate.swift */; };
 		83DBDC4E1EA16F530024665C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4D1EA16F530024665C /* MasterViewController.swift */; };
 		83DBDC501EA16F530024665C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4F1EA16F530024665C /* DetailViewController.swift */; };
 		83DBDC531EA16F530024665C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DBDC511EA16F530024665C /* Main.storyboard */; };
-		83DBDC551EA16F530024665C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83DBDC541EA16F530024665C /* Assets.xcassets */; };
 		83DBDC581EA16F530024665C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DBDC561EA16F530024665C /* LaunchScreen.storyboard */; };
 		83DBDC631EA16F530024665C /* Demo2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC621EA16F530024665C /* Demo2Tests.swift */; };
 		83DBDC6E1EA16F530024665C /* Demo2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC6D1EA16F530024665C /* Demo2UITests.swift */; };
@@ -38,12 +42,16 @@
 
 /* Begin PBXFileReference section */
 		83193E661EA27640009AC64C /* MapViewConttroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewConttroller.swift; sourceTree = "<group>"; };
+		83193E6A1EA2DAEA009AC64C /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		83193E6C1EA2DB13009AC64C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83193E6E1EA3CBE0009AC64C /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		83193E701EA3D1E4009AC64C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		83193E721EA3D211009AC64C /* URLCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCell.swift; sourceTree = "<group>"; };
 		83DBDC481EA16F530024665C /* Demo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DBDC4B1EA16F530024665C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83DBDC4D1EA16F530024665C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		83DBDC4F1EA16F530024665C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		83DBDC521EA16F530024665C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		83DBDC541EA16F530024665C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83DBDC571EA16F530024665C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83DBDC591EA16F530024665C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83DBDC5E1EA16F530024665C /* Demo2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Demo2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +91,7 @@
 		83DBDC3F1EA16F530024665C = {
 			isa = PBXGroup;
 			children = (
+				83193E6A1EA2DAEA009AC64C /* AppIcon.xcassets */,
 				83DBDC4A1EA16F530024665C /* Demo2 */,
 				83DBDC611EA16F530024665C /* Demo2Tests */,
 				83DBDC6C1EA16F530024665C /* Demo2UITests */,
@@ -107,10 +116,13 @@
 				83DBDC4D1EA16F530024665C /* MasterViewController.swift */,
 				83DBDC4F1EA16F530024665C /* DetailViewController.swift */,
 				83193E661EA27640009AC64C /* MapViewConttroller.swift */,
+				83193E6E1EA3CBE0009AC64C /* ContactCell.swift */,
+				83193E701EA3D1E4009AC64C /* LocationCell.swift */,
+				83193E721EA3D211009AC64C /* URLCell.swift */,
+				83193E6C1EA2DB13009AC64C /* Assets.xcassets */,
 				83DBDC561EA16F530024665C /* LaunchScreen.storyboard */,
 				83DBDC7B1EA1716B0024665C /* Organizations.plist */,
 				83DBDC511EA16F530024665C /* Main.storyboard */,
-				83DBDC541EA16F530024665C /* Assets.xcassets */,
 				83DBDC591EA16F530024665C /* Info.plist */,
 			);
 			path = Demo2;
@@ -241,9 +253,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83193E6B1EA2DAEA009AC64C /* AppIcon.xcassets in Resources */,
 				83DBDC581EA16F530024665C /* LaunchScreen.storyboard in Resources */,
 				83DBDC7C1EA1716B0024665C /* Organizations.plist in Resources */,
-				83DBDC551EA16F530024665C /* Assets.xcassets in Resources */,
+				83193E6D1EA2DB13009AC64C /* Assets.xcassets in Resources */,
 				83DBDC531EA16F530024665C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,10 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83193E711EA3D1E4009AC64C /* LocationCell.swift in Sources */,
+				83193E6F1EA3CBE0009AC64C /* ContactCell.swift in Sources */,
 				83DBDC501EA16F530024665C /* DetailViewController.swift in Sources */,
 				83DBDC4E1EA16F530024665C /* MasterViewController.swift in Sources */,
 				83193E671EA27640009AC64C /* MapViewConttroller.swift in Sources */,
 				83DBDC4C1EA16F530024665C /* AppDelegate.swift in Sources */,
+				83193E731EA3D211009AC64C /* URLCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

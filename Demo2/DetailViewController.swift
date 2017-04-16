@@ -7,6 +7,14 @@
 //
 
 import UIKit
+import WebKit
+
+// http://stackoverflow.com/questions/14974331/string-to-phone-number-format-in-iphone-sdk
+extension String {
+    public func toPhoneNumber() -> String {
+        return replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: nil)
+    }
+}
 
 class DetailViewController: UITableViewController {
 
@@ -17,7 +25,9 @@ class DetailViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.tableHeaderView = tableHeader()
+        tableView.tableFooterView = tableFooter()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +41,51 @@ class DetailViewController: UITableViewController {
         }
     }
 
+
+    func tableHeader() -> UIView? {
+        
+        let view = UIView()
+        
+        view.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height:200)
+        
+        let webView = UIWebView()
+        
+        webView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height:200)
+        
+        webView.isUserInteractionEnabled = false
+        webView.backgroundColor = UIColor.white
+        
+        // http://jsfiddle.net/hashem/u78bQ/
+        
+        let embeddedHTML = "<html><head></head><body style='margin: 0;background-color:black;font-family:helvetica;font-weight:bold'><center><div style='background-color:black'> <div style='font-family:helvetica;font-weight:bold;font-size:40px;color:white;'>\(detailItem!.name.description.uppercased())</div></center><center><div style='padding:5px;padding-bottom:20px;color:lightgrey;font-family:helvetica;font-size:10px;background-color:black;line-height: 175%;height:100px;'>Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. </div></center> </div>  <center> <div style='height:100px;padding:0px;background-color:white;'><div style='color:white;width: 50px;height: 25px;background-color: black;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;border: 0px solid gray;border-top: 0;margin-top:0px;'>&or;</div> </div></center>  </body></html>";
+        
+        webView.loadHTMLString(embeddedHTML, baseURL: nil)
+        
+        view.addSubview(webView)
+        
+        return view
+        
+    }
+    
+    func tableFooter() -> UIView {
+        
+        let view = UIView()
+        
+        view.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height:100)
+        
+        let registerButton = UIButton(type: UIButtonType.roundedRect)
+        registerButton.frame = CGRect(x:10, y:25, width:200, height:50);
+        registerButton.setTitle("Register", for: UIControlState.normal)
+        registerButton.backgroundColor = UIColor.yellow
+        registerButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        
+        registerButton.center = view.center
+        
+        view.addSubview(registerButton)
+        
+        return view
+        
+    }
     
     // MARK: - Table View
 
@@ -39,130 +94,72 @@ class DetailViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        var row_height = 60.0
+        var row_height = 75.0
         
         if indexPath.row == 2 {
-            row_height = 40
-        }
-
-        if indexPath.row == 3 {
-            row_height = 20
+            row_height = 130
         }
 
         return CGFloat(row_height)
         
     }
-    // override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     
-    
-    
-    
-    
-    // }
-    
-        
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "website", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "website", for: indexPath) as? URLCell
             
-            cell.accessoryView = UIImageView(image: UIImage(named: "website"))
+            cell?.url.text = detailItem?.url.uppercased()
+            
+            cell?.url_icon.image = UIImage(named: "website")
 
-            cell.detailTextLabel!.text = detailItem?.url
-            return cell
+            return cell!
 
         }
         else if indexPath.row == 1 {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "location", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "location", for: indexPath) as? LocationCell
             
-            cell.accessoryView = UIImageView(image: UIImage(named: "map"))
+            cell?.location.text = detailItem?.location.uppercased()
+            
+            cell?.location_icon.image = UIImage(named: "location")
 
-            cell.detailTextLabel!.text = detailItem?.location
-            return cell
+            return cell!
             
         }
-        else if indexPath.row == 2 {
+        else  {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "phone", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath) as? ContactCell
             
-            cell.accessoryView = UIImageView(image: UIImage(named: "phone"))
+            cell?.phone.text = detailItem?.phone.toPhoneNumber()
+            cell?.email.text = detailItem?.email.uppercased()
+            
+            cell?.phone_icon.image = UIImage(named: "phone")
+            cell?.email_icon.image = UIImage(named: "email")
 
-            cell.detailTextLabel!.text = detailItem?.phone
-            return cell
+            
+            return cell!
             
         }
-        else if indexPath.row == 3 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "email", for: indexPath)
-            
-            cell.accessoryView = UIImageView(image: UIImage(named: "email"))
+        
 
-            cell.textLabel!.text = detailItem?.email
-            return cell
-            
-        }
-        else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "register", for: indexPath)
-            
-            return cell
-
-        }
         
     }
     
+    /* not used due to data detectors 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
-                        
-            if let url = URL(string:detailItem?.url as! String), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-            else {
-                print("cannot open")
-            }
-            
-        }
-
-        if indexPath.row == 1 {
-            
-           // handled by segue
-            
-            
-        }
-   
-        if indexPath.row == 2 {
-            
-            if let url = URL(string:"\(String(describing: detailItem?.phone))"), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-            else {
-                print("cannot open")
-            }
-        }
-
-        if indexPath.row == 3 {
-            
-            if let url = URL(string:detailItem?.email as! String), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-            else {
-                print("cannot open")
-            }
-        
-        }
         
     }
+    */
     
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowMap" {
