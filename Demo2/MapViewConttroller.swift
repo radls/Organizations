@@ -58,6 +58,12 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
         }
     }
     
+    @IBAction func closeMaps(_ sender: Any) {
+    
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)

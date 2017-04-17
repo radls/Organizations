@@ -23,11 +23,6 @@ class DetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
-        tableView.tableHeaderView = tableHeader()
-        tableView.tableFooterView = tableFooter()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,11 +32,30 @@ class DetailViewController: UITableViewController {
 
     var detailItem: Organization? {
         didSet {
-            // Update the view.
+            
+            tableView.tableHeaderView = tableHeader()
+            tableView.tableFooterView = tableFooter()
+            
         }
     }
 
+    @IBAction func closeOrganization(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
 
+    }
+
+    @IBAction func shareAction(_ sender: Any) {
+    
+        let shareText = ""
+        
+        if detailItem != nil {
+            let vc = UIActivityViewController(activityItems: [shareText, detailItem as Any], applicationActivities: [])
+            present(vc, animated: true, completion: nil)
+        }
+
+    }
+    
     func tableHeader() -> UIView? {
         
         let view = UIView()
@@ -71,7 +85,7 @@ class DetailViewController: UITableViewController {
         
         let view = UIView()
         
-        view.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height:100)
+        view.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height:75)
         
         let registerButton = UIButton(type: UIButtonType.roundedRect)
         registerButton.frame = CGRect(x:10, y:25, width:200, height:50);
@@ -148,28 +162,18 @@ class DetailViewController: UITableViewController {
             return cell!
             
         }
-        
-
-        
+                
     }
-    
-    /* not used due to data detectors 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-    }
-    */
-    
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "ShowMap" {
+        if segue.identifier == "showMap" {
             
             if self.tableView.indexPathForSelectedRow?.row == 1 {
                                 
                 let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
                 controller.detailItem = detailItem
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
                 
             }
             
