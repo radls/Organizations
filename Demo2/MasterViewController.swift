@@ -17,6 +17,7 @@ open class Organization: NSObject {
     
     var email = String()
     var phone = String()
+    var time_stamp = Date()
     
 }
 
@@ -24,7 +25,11 @@ class MasterViewController: UITableViewController {
 
     var detailViewController = DetailViewController()
     var objects = [Organization]()
-
+    var sort_type = 0   // 0 - A-Z, 1 - Newest
+    
+    var sortButtonAZ     = UIBarButtonItem()
+    var sortButtonNewest = UIBarButtonItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,19 +55,37 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func sortList() {
+        
+        if sort_type == 0 {
+            objects = objects.sorted(by: { $0.name < $1.name })
+        }
+        if sort_type == 1 {
+            objects = objects.sorted(by: { $0.name > $1.name })
+
+//            objects = objects.sorted(by: { $0.time_stamp > $1.time_stamp })
+        }
+        
+        self.tableView.reloadData()
+
+    }
+    
     func insertNewObject(_ sender: Any) {
         
         let new_org = Organization()
         
-        new_org.name = "Loveway"
+        new_org.name = "Loveway\(objects.count+1)"
         new_org.email = "info@lovewayinc.org"
         new_org.url = "lovewayinc.org"
         new_org.location = "54151 CR 33, Middlebury, IN 46540"
         new_org.phone = "5748255666"
+        new_org.time_stamp = Date()
         
         objects.insert(new_org, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        
+        self.sortList()
         
     }
     
@@ -80,6 +103,50 @@ class MasterViewController: UITableViewController {
         }
     }
 
+    func setSortAZ(){
+        
+        sort_type = 0
+        
+        self.sortList()
+
+        // http://stackoverflow.com/questions/8849913/how-can-i-change-font-of-uibarbuttonitem
+        self.sortButtonAZ.setTitleTextAttributes(
+            [
+                NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: 18)!
+            ],
+            for: .normal)
+        
+        // http://stackoverflow.com/questions/8849913/how-can-i-change-font-of-uibarbuttonitem
+        self.sortButtonNewest.setTitleTextAttributes(
+            [
+                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 18)!
+            ],
+            for: .normal)
+        
+    }
+
+    func setSortNewest(){
+        
+        sort_type = 1
+        
+        self.sortList()
+
+        // http://stackoverflow.com/questions/8849913/how-can-i-change-font-of-uibarbuttonitem
+        self.sortButtonAZ.setTitleTextAttributes(
+            [
+                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 18)!
+            ],
+            for: .normal)
+        
+        // http://stackoverflow.com/questions/8849913/how-can-i-change-font-of-uibarbuttonitem
+        self.sortButtonNewest.setTitleTextAttributes(
+            [
+                NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: 18)!
+            ],
+            for: .normal)
+
+    }
+    
     func tableHeader() -> UIView? {
         
         let view = UIView()
@@ -101,26 +168,26 @@ class MasterViewController: UITableViewController {
         
         let toolbar = UIToolbar(frame: CGRect(x: 0.0, y: view.frame.size.height-44.0, width:self.view.frame.size.width, height: 44.0))
         
-        let button1 = UIBarButtonItem(title: "A-Z", style: UIBarButtonItemStyle.done, target: self, action: nil)
+        self.sortButtonAZ = UIBarButtonItem(title: "A-Z", style: UIBarButtonItemStyle.done, target: self, action: "setSortAZ")
         
         // http://stackoverflow.com/questions/8849913/how-can-i-change-font-of-uibarbuttonitem
-        button1.setTitleTextAttributes(
+        self.sortButtonAZ.setTitleTextAttributes(
             [
                 NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: 18)!
             ],
             for: .normal)
         
-        let button2 = UIBarButtonItem(title: "NEWEST", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        self.sortButtonNewest = UIBarButtonItem(title: "NEWEST", style: UIBarButtonItemStyle.plain, target: self, action: "setSortNewest")
         let button3 = UIBarButtonItem(title: "SEARCH", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         
-        button1.tintColor = UIColor.gray
-        button2.tintColor = UIColor.gray
-        button3.tintColor = UIColor.gray
+        self.sortButtonAZ.tintColor = UIColor.gray
+        sortButtonNewest.tintColor  = UIColor.gray
+        button3.tintColor           = UIColor.gray
         
         // https://www.hackingwithswift.com/example-code/uikit/how-to-add-a-flexible-space-to-a-uibarbuttonitem
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        toolbar.items = [spacer,button1,spacer,button2,spacer,button3,spacer]
+        toolbar.items = [spacer,self.sortButtonAZ,spacer,self.sortButtonNewest,spacer,button3,spacer]
         
         view.addSubview(toolbar)
         
