@@ -30,10 +30,12 @@ class MapLocation: NSObject, MKAnnotation, MKMapViewDelegate {
 
 }
 
-class MapViewController: UIViewController, MKMapViewDelegate  {
+
+
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate  {
 
     let geocoder = CLGeocoder()
-    
+
     @IBOutlet weak var MapView: MKMapView!
 
     override func viewDidLoad() {
@@ -41,6 +43,8 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
         
         MapView.delegate = self
 
+        MapView.showsUserLocation = true
+        
         // Do any additional setup after loading the view, typically from a nib.
        
     }
@@ -48,12 +52,14 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated)
+        
     }
     
     var detailItem: Organization? {
         didSet {
             // Update the view.
             self.reverseLookup()
+            
             
         }
     }
@@ -74,10 +80,8 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
     // reverse look up from address
     
     
-    func reverseLookup() -> CLLocationCoordinate2D {
-        
-        var location = CLLocationCoordinate2D()
-        
+    func reverseLookup() {
+                
         let address = detailItem?.location
         
         geocoder.geocodeAddressString(address!, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
@@ -94,11 +98,12 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
                 self.MapView.addAnnotation(annotation)
                 
                 self.centerMapOnLocation(location: (placemark.location)!)
+
+                self.MapView.selectAnnotation(annotation, animated: true)
+
             }
             
         })
-
-        return location
         
     }
     
@@ -116,12 +121,29 @@ class MapViewController: UIViewController, MKMapViewDelegate  {
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: 0, y: -5)
                 view.image = UIImage(named: "pinCustom1")
-              //  view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                
+                let accessoryButton = UIButton(type: .custom)
+                accessoryButton.frame = CGRect(x:10, y:0, width:32, height:32);
+                accessoryButton.setImage(UIImage(named: "directions"), for: .normal)
+                
+                view.rightCalloutAccessoryView = accessoryButton
             }
             return view
         }
         return nil
     }
+
+    // http://stackoverflow.com/questions/21983559/opens-apple-maps-app-from-ios-app-with-directions
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+
+        let placemark = MKPlacemark(coordinate: (view.annotation?.coordinate)!)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = (view.annotation?.title)!
         
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        
+        
+    }
+    
 }
 

@@ -16,12 +16,14 @@ extension String {
     }
 }
 
-class DetailViewController: UITableViewController {
+class DetailViewController: UITableViewController, UITextViewDelegate {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.darkGray
         
     }
 
@@ -47,7 +49,7 @@ class DetailViewController: UITableViewController {
 
     @IBAction func shareAction(_ sender: Any) {
     
-        let shareText = ""
+        let shareText = "\(detailItem?.name as! String) \n\(detailItem?.url as! String) \n\(detailItem?.location as! String) \n\(detailItem?.phone as! String) \n\(detailItem?.email as! String)"
         
         if detailItem != nil {
             let vc = UIActivityViewController(activityItems: [shareText, detailItem as Any], applicationActivities: [])
@@ -71,7 +73,7 @@ class DetailViewController: UITableViewController {
         
         // http://jsfiddle.net/hashem/u78bQ/
         
-        let embeddedHTML = "<html><head></head><body style='margin: 0;background-color:black;font-family:helvetica;font-weight:bold'><center><div style='background-color:black'> <div style='font-family:helvetica;font-weight:bold;font-size:40px;color:white;'>\(detailItem!.name.description.uppercased())</div></center><center><div style='padding:5px;padding-bottom:20px;color:lightgrey;font-family:helvetica;font-size:10px;background-color:black;line-height: 175%;height:100px;'>Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. </div></center> </div>  <center> <div style='height:100px;padding:0px;background-color:white;'><div style='color:white;width: 50px;height: 25px;background-color: black;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;border: 0px solid gray;border-top: 0;margin-top:0px;'>&or;</div> </div></center>  </body></html>";
+        let embeddedHTML = "<html><head></head><body style='margin: 0;margin-top:10px;background-color:black;font-family:helvetica;font-weight:bold'><center><div style='background-color:black'> <div style='font-family:helvetica;font-weight:bold;font-size:40px;color:white;'>\(detailItem!.name.description.uppercased())</div></center><center><div style='padding:5px;padding-bottom:10px;color:lightgrey;font-family:helvetica;font-size:10px;background-color:black;line-height: 175%;height:100px;'>Lorem ipsum dolor sit amet, ligula suspendisse nulla pretium, rhoncus tempor fermentum, enim integer ad vestibulum volutpat. Nisl rhoncus turpis est, vel elit, congue wisi enim nunc ultricies sit, magna tincidunt. Maecenas aliquam maecenas ligula nostra, accumsan taciti. </div></center> </div>  <center> <div style='height:100px;padding:0px;background-color:white;'><div style='color:white;width: 50px;height: 25px;background-color: black;border-bottom-left-radius: 50px;border-bottom-right-radius: 50px;border: 0px solid gray;border-top: 0;margin-top:0px;'>&or;</div> </div></center>  </body></html>";
         
         webView.loadHTMLString(embeddedHTML, baseURL: nil)
         
@@ -90,6 +92,7 @@ class DetailViewController: UITableViewController {
         let registerButton = UIButton(type: UIButtonType.roundedRect)
         registerButton.frame = CGRect(x:10, y:25, width:200, height:50);
         registerButton.setTitle("Register", for: UIControlState.normal)
+        registerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         registerButton.backgroundColor = UIColor.yellow
         registerButton.setTitleColor(UIColor.black, for: UIControlState.normal)
         
@@ -164,6 +167,32 @@ class DetailViewController: UITableViewController {
         }
                 
     }
+    
+    // http://stackoverflow.com/questions/38964264/openurl-in-ios10
+    func open(scheme: String) {
+        if let url = URL(string: scheme) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            print("Open \(scheme): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+               // print("Open \(scheme): \(success)")
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                
+        if indexPath.row == 0 {
+            
+            self.open(scheme: "http://\((self.detailItem?.url)!)")
+
+        }
+        
+    }
  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -173,7 +202,7 @@ class DetailViewController: UITableViewController {
                                 
                 let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
                 controller.detailItem = detailItem
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+              //  controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 
             }
             
@@ -181,5 +210,13 @@ class DetailViewController: UITableViewController {
         
     }
 
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+            print(URL)
+        
+        return true
+        
+    }
+    
 }
 

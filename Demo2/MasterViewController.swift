@@ -32,10 +32,12 @@ class MasterViewController: UITableViewController {
 
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
-
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.darkGray
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItem = addButton
-   
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGray
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -100,8 +102,16 @@ class MasterViewController: UITableViewController {
         let toolbar = UIToolbar(frame: CGRect(x: 0.0, y: view.frame.size.height-44.0, width:self.view.frame.size.width, height: 44.0))
         
         let button1 = UIBarButtonItem(title: "A-Z", style: UIBarButtonItemStyle.done, target: self, action: nil)
-        let button2 = UIBarButtonItem(title: "Newest", style: UIBarButtonItemStyle.plain, target: self, action: nil)
-        let button3 = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        
+        // http://stackoverflow.com/questions/8849913/how-can-i-change-font-of-uibarbuttonitem
+        button1.setTitleTextAttributes(
+            [
+                NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: 18)!
+            ],
+            for: .normal)
+        
+        let button2 = UIBarButtonItem(title: "NEWEST", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        let button3 = UIBarButtonItem(title: "SEARCH", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         
         button1.tintColor = UIColor.gray
         button2.tintColor = UIColor.gray
