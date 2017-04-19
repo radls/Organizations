@@ -206,7 +206,7 @@ class MasterViewController: UITableViewController, NSURLConnectionDelegate, UISe
         
         let new_org = Organization()
         
-        new_org.name = "Loveway\(objects.count+1)"
+        new_org.name = "Loveway"
         new_org.email = "info@lovewayinc.org"
         new_org.url = "lovewayinc.org"
         new_org.location = "54151 CR 33, Middlebury, IN 46540"
@@ -214,6 +214,7 @@ class MasterViewController: UITableViewController, NSURLConnectionDelegate, UISe
         new_org.time_stamp = Date()
         
         objects.insert(new_org, at: 0)
+        server_data.insert(new_org, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         
