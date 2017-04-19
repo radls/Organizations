@@ -196,8 +196,6 @@ class MasterViewController: UITableViewController, NSURLConnectionDelegate, UISe
         }
         if sort_type == 1 {
             objects = objects.sorted(by: { $0.time_stamp > $1.time_stamp })
-
-//            objects = objects.sorted(by: { $0.time_stamp > $1.time_stamp })
         }
         
         self.tableView.reloadData()
@@ -363,28 +361,22 @@ class MasterViewController: UITableViewController, NSURLConnectionDelegate, UISe
                         new_org.time_stamp = Date()
                         
                         self.objects.insert(new_org, at: 0)
-                        //   let indexPath = IndexPath(row: 0, section: 0)
-                        //   self.tableView.insertRows(at: [indexPath], with: .automatic)
                         
                     }
-                    
-                    self.tableView.activityIndicatorView.stopAnimating()
                     
                     self.server_data = self.objects
                     
                     self.sortList()
                     
-                    self.tableView.reloadData()
-                    
-                    // print(self.objects)
-                    
-                    // print(json)
-                    // print(json.count)
-                    // print(json[0].value(forKey: "name") as! String)
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        
+                        self.tableView.activityIndicatorView.stopAnimating()
+                        self.tableView.reloadData()
+                        
+                    })
                     
                 } catch {
                     print(error)
-                    // Something went wrong
                 }
             }
         }).resume()

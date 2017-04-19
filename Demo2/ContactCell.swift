@@ -13,8 +13,6 @@ import UIKit
 class ContactCell: UITableViewCell {
 
     @IBOutlet weak var phone: UITextView!
-//    @IBOutlet weak var phone: UILabel!
- //   @IBOutlet weak var email: UILabel!
     
     @IBOutlet weak var phone_icon: UIImageView!
     @IBOutlet weak var email_icon: UIImageView!

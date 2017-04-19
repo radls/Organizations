@@ -24,7 +24,6 @@ class MapLocation: NSObject, MKAnnotation, MKMapViewDelegate {
       
         self.coordinate = location
         self.title = name
-     //   self.subtitle = url
         
     }
 
@@ -60,7 +59,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             // Update the view.
             self.reverseLookup()
             
-            
         }
     }
     
@@ -78,8 +76,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/LocationAwarenessPG/UsingGeocoders/UsingGeocoders.html#//apple_ref/doc/uid/TP40009497-CH4-SW8
     // reverse look up from address
-    
-    
     func reverseLookup() {
                 
         let address = detailItem?.location

@@ -184,7 +184,6 @@ class DetailViewController: UITableViewController, UITextViewDelegate {
                 })
             } else {
                 let success = UIApplication.shared.openURL(url)
-               // print("Open \(scheme): \(success)")
             }
         }
     }
@@ -207,7 +206,6 @@ class DetailViewController: UITableViewController, UITextViewDelegate {
                                 
                 let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
                 controller.detailItem = detailItem
-              //  controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 
             }
             

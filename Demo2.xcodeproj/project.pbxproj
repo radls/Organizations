@@ -21,7 +21,6 @@
 		83DBDC581EA16F530024665C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DBDC561EA16F530024665C /* LaunchScreen.storyboard */; };
 		83DBDC631EA16F530024665C /* Demo2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC621EA16F530024665C /* Demo2Tests.swift */; };
 		83DBDC6E1EA16F530024665C /* Demo2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC6D1EA16F530024665C /* Demo2UITests.swift */; };
-		83DBDC7C1EA1716B0024665C /* Organizations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DBDC7B1EA1716B0024665C /* Organizations.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +61,6 @@
 		83DBDC691EA16F530024665C /* Demo2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Demo2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DBDC6D1EA16F530024665C /* Demo2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo2UITests.swift; sourceTree = "<group>"; };
 		83DBDC6F1EA16F530024665C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83DBDC7B1EA1716B0024665C /* Organizations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Organizations.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +131,6 @@
 				83193E721EA3D211009AC64C /* URLCell.swift */,
 				83193E6C1EA2DB13009AC64C /* Assets.xcassets */,
 				83DBDC561EA16F530024665C /* LaunchScreen.storyboard */,
-				83DBDC7B1EA1716B0024665C /* Organizations.plist */,
 				83DBDC511EA16F530024665C /* Main.storyboard */,
 				83DBDC591EA16F530024665C /* Info.plist */,
 			);
@@ -273,7 +270,6 @@
 			files = (
 				83193E6B1EA2DAEA009AC64C /* AppIcon.xcassets in Resources */,
 				83DBDC581EA16F530024665C /* LaunchScreen.storyboard in Resources */,
-				83DBDC7C1EA1716B0024665C /* Organizations.plist in Resources */,
 				83193E6D1EA2DB13009AC64C /* Assets.xcassets in Resources */,
 				83DBDC531EA16F530024665C /* Main.storyboard in Resources */,
 			);
