@@ -343,8 +343,8 @@ class MasterViewController: UITableViewController, NSURLConnectionDelegate, UISe
         // Asynchronous Http call to your api url, using NSURLSession:
         URLSession.shared.dataTask(with: NSURL(string: "https://gist.githubusercontent.com/radls/d02f30018ed3ba6ab955861469f66906/raw/c30f22d95cfcd43836b8f3c7daffe564f9c07dc1/Locations.json")! as URL, completionHandler: { (data, response, error) -> Void in
             // Check if data was received successfully
-            print(data)
-            print(error)
+           // print(data)
+          //  print(error)
             
             if error == nil && data != nil {
                 do {
