@@ -13,6 +13,7 @@
 		83193E6F1EA3CBE0009AC64C /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E6E1EA3CBE0009AC64C /* ContactCell.swift */; };
 		83193E711EA3D1E4009AC64C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E701EA3D1E4009AC64C /* LocationCell.swift */; };
 		83193E731EA3D211009AC64C /* URLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83193E721EA3D211009AC64C /* URLCell.swift */; };
+		83193EBE1EA70097009AC64C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83193EBD1EA70097009AC64C /* MapKit.framework */; };
 		83DBDC4C1EA16F530024665C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4B1EA16F530024665C /* AppDelegate.swift */; };
 		83DBDC4E1EA16F530024665C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4D1EA16F530024665C /* MasterViewController.swift */; };
 		83DBDC501EA16F530024665C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DBDC4F1EA16F530024665C /* DetailViewController.swift */; };
@@ -47,6 +48,7 @@
 		83193E6E1EA3CBE0009AC64C /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		83193E701EA3D1E4009AC64C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		83193E721EA3D211009AC64C /* URLCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCell.swift; sourceTree = "<group>"; };
+		83193EBD1EA70097009AC64C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83DBDC481EA16F530024665C /* Demo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DBDC4B1EA16F530024665C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83DBDC4D1EA16F530024665C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83193EBE1EA70097009AC64C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83193EBC1EA70097009AC64C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83193EBD1EA70097009AC64C /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		83DBDC3F1EA16F530024665C = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +107,7 @@
 				83DBDC611EA16F530024665C /* Demo2Tests */,
 				83DBDC6C1EA16F530024665C /* Demo2UITests */,
 				83DBDC491EA16F530024665C /* Products */,
+				83193EBC1EA70097009AC64C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +228,11 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 3FQDCJKUE2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					83DBDC5D1EA16F530024665C = {
 						CreatedOnToolsVersion = 8.3;
